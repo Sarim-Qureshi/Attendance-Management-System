@@ -228,3 +228,41 @@
     font-size:1.2em;
     text-align: center;
 }
+#table{
+    position:absolute;
+    left: 28.5vw;
+    top: 20vh;
+    width: 43vw;
+    border :5px solid black;
+    border-radius: 10px;
+    background-color:#333;
+}
+thead{
+    color:white;
+    font-size:1.2em;
+    margin:10px;
+    font-weight: bold;
+    font-family: 'Baloo Tammudu 2', cursive;
+}
+th:hover{
+    transform: scale(0.95);
+}
+th{
+    border: 5px solid black;
+    background-color: red;
+    padding: 5px 70px 0px 70px;
+    border-radius: 200px;
+}
+td{
+    border: 2px solid black;
+    font-size:1.2em;
+    margin:10px;
+    font-weight: bold;
+    font-family: 'Baloo Tammudu 2', cursive;
+    text-align:center;
+    /* border-radius: 600px; */
+    color:white;
+}
+td:hover{
+    color:cyan;
+}

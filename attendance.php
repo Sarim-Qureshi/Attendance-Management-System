@@ -31,6 +31,68 @@ echo '
     <input type="submit" class="attendanceb" value="Next">
     </form>
 </div>
+
+
+
+
+<div id="table">
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Id</th>
+<th>Record</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mike Tyson</td>
+<td>s9</td>
+<td>present/absent</td>
+</tr>
+<tr>
+<td>Mike Tyson</td>
+<td>s9</td>
+<td>present/absent</td>
+</tr>
+<tr>
+<td>Mike Tyson</td>
+<td>s9</td>
+<td>present/absent</td>
+</tr>
+<tr>
+<td>Mike Tyson</td>
+<td>s9</td>
+<td>present/absent</td>
+</tr>
+<tr>
+<td>Mike Tyson</td>
+<td>s9</td>
+<td>present/absent</td>
+</tr>
+<tr>
+<td>Mike Tyson</td>
+<td>s9</td>
+<td>present/absent</td>
+</tr>
+<tr>
+<td>Mike Tyson</td>
+<td>s9</td>
+<td>present/absent</td>
+</tr>
+<tr>
+<td>Mike Tyson</td>
+<td>s9</td>
+<td>present/absent</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+
+
+
 </div>
 <script src=
 "https://code.jquery.com/jquery-3.3.1.min.js">
@@ -69,6 +131,9 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 mysqli_close($conn);
 echo '
 <script>
+var height = (window.scrollY + document.querySelector("#table").getBoundingClientRect().bottom);
+console.log(height);
+document.getElementById("attendancecontainer").style.height = height+"px";
 document.getElementById("homeli").style.color="white";
 document.getElementById("asli").style.color="white";
 document.getElementById("att").style.color="blue";
