@@ -1,0 +1,230 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Tammudu+2:wght@700&display=swap');
+#container{
+    position: absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    border:1px solid black;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #555;
+    background: url('homez.jpg') no-repeat;
+    background-size: 100%;
+}
+#heading{
+    position: absolute;
+    top:-55px;
+    font-size:3.4em;
+    text-align: center;
+    padding-top: 5%;
+    font-family: 'Baloo Tammudu 2', cursive;
+    color:white;
+}
+#box-login{
+    width:23%;
+    height:50%;
+    border:4px solid #333;
+    border-radius:10px;
+    box-shadow: 3px 2px;
+    background-color:#c4cace;
+    opacity: 0.75;
+}
+#box-register{
+    position:absolute;
+    top:140px;
+    width:23%;
+    height:64%;
+    border:4px solid #333;
+    border-radius:10px;
+    box-shadow: 3px 2px;
+    background-color:#c4cace;
+    opacity: 0.75;
+}
+
+#title{
+    font-size:2.5em;
+    text-align: center;
+    padding-top: 5%;
+    font-family: 'Baloo Tammudu 2', cursive;
+    text-shadow: 5px 2px whitesmoke;
+}
+.formelem{
+    margin: 10px 30px;
+    font-size:1.2em;
+    text-align: center;
+}
+.selectinp{
+    margin: 10px 30px;
+    font-size:1.05em;
+    text-align: center;
+}
+#login, #register, #signup, #addstudent{
+    font-size:1.2em;
+    width:80%;
+    padding:2px;
+    cursor:pointer;
+    margin:10px 30px;
+    color:white;
+}
+#login{
+    background-color: #0C7EA6;
+}
+#login:hover{
+    background-color:#1338BE;
+}
+#register, #signup{
+    background-color:#5BC236;
+}
+#register:hover, #signup:hover{
+    background-color:#006400;
+}
+#navbar{
+    background-color: black;
+    position: absolute;
+    top:0px;
+    left:0px;
+    width:100vw;
+    height:11.5%
+ }
+ ul{
+     list-style-type:none;
+     background-color: black;
+ }
+ li{
+     display:inline;
+     font-size: 1.4em;
+     font-family: 'Baloo Tammudu 2', cursive;
+     padding-left:5px;
+     padding-right:5px;
+     padding-top:3px;
+     margin:5px;
+     color: white;
+ }
+ 
+ a{
+     text-decoration: none;
+     cursor:pointer;
+ }
+ a:visited{
+     color:white;
+ }
+ #logoutli{
+     margin-left:540px;
+     cursor:pointer;
+     color:red;
+ }
+ #homecontainer{
+     position: absolute;
+     left:0%;
+     top:11.5%;
+     width:100vw;
+     height:88.5vh;
+     background: url(home.jpg) no-repeat;
+     background-size: 100%;
+ }
+ #homecontainertitle{
+     position:relative;
+     top:17%;
+     left:10%;
+     width:80vw;
+     height:12vh;
+     display:flex;
+     align-items:center;
+     justify-content: center;
+     font-family: 'Baloo Tammudu 2', cursive;
+     font-size:3em;
+     color:white;
+    }
+ #homecontainerbody{
+     position:relative;
+     top:10%;
+     left:10%;
+     width:80vw;
+     height:10vh;
+     display:flex;
+     align-items:center;
+     justify-content: center;
+     font-family: 'Baloo Tammudu 2', cursive;
+     font-size:1.3em;
+     color:white;
+    }
+#addstudentcontainer, #attendancecontainer{
+    position: absolute;
+    left:0%;
+    top:11.5%;
+    width:100vw;
+    height:88.5vh;
+    /* background-color: #666; */
+    background-image: linear-gradient(to right bottom, #111, #999);
+}
+#addstudentformcontainer{
+    position:relative;
+    top:5%;
+    left:35%;
+    width:30vw;
+    height:70vh;
+    background-color: #bbb;
+    font-size: 1.2em;
+    border-radius: 5%;
+    border: 10px solid black;
+    text-align:center;
+    font-weight: bold;
+    font-family: monospace;
+}
+#addstudent, .attendanceb{
+    background-color: #fda50f;
+    /* background-color: #E3242B; */
+}
+#addstudent:hover, .attendanceb:hover{
+    background-color: #FD6A02;
+    /* background-color: #990f02; */
+}
+#error{
+    color:red;
+    font-size: 1.2em;
+    font-family: 'Baloo Tammudu 2', cursive;
+    text-align: center;
+}
+#attendanceform1{
+    position:relative;
+    top:0px;
+    left:15%;
+    width:70vw;
+    height:8vh;
+    /* background:pink; */
+    display:flex;
+    justify-content: center;
+    color:white;
+}
+#attendanceform2{
+    position:relative;
+    top:0px;
+    left:15%;
+    width:70vw;
+    height:8vh;
+    display:flex;
+    justify-content: center;
+    color:white;
+    visibility: hidden;
+}
+.attendanceb{
+    font-size:1.2em;
+    padding:2px;
+    cursor:pointer;
+    margin:10px;
+    color:white;
+    border-radius: 5px;
+}
+.attendancelabel{
+    font-size:1.2em;
+    margin:10px;
+    font-weight: bold;
+    font-family: 'Baloo Tammudu 2', cursive;
+}
+.attendanceinput{
+    margin: 10px;
+    font-size:1.2em;
+    text-align: center;
+}
