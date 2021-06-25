@@ -17,7 +17,7 @@ echo '
     </select>
      <label for="sem" class="attendancelabel">Semester</label>
      <input type="number" id="sem" min="1" max="8" class="attendanceinput" name="sem" required>
-     <input type="submit" class="attendanceb" value="Next">
+     <input type="submit" class="attendanceb" value="Next" name="btn1">
     </form>
 </div>
 <div id="attendanceform2">
@@ -28,7 +28,7 @@ echo '
     </select>
     <label for="date" class="attendancelabel">Date</label>
     <input type="date" name="date" id="date" required>
-    <input type="submit" class="attendanceb" value="Next">
+    <input type="submit" class="attendanceb" value="Next" name="btn2">
     </form>
 </div>
 
@@ -36,8 +36,8 @@ echo '
 
 
 <div id="table">
-<table>
-<thead>
+<table id="myTable">
+<thead id="tablehead">
 <tr>
 <th>Name</th>
 <th>Id</th>
@@ -45,46 +45,7 @@ echo '
 </tr>
 </thead>
 <tbody>
-<tr>
-<td>Mike Tyson</td>
-<td>s9</td>
-<td>present/absent</td>
-</tr>
-<tr>
-<td>Mike Tyson</td>
-<td>s9</td>
-<td>present/absent</td>
-</tr>
-<tr>
-<td>Mike Tyson</td>
-<td>s9</td>
-<td>present/absent</td>
-</tr>
-<tr>
-<td>Mike Tyson</td>
-<td>s9</td>
-<td>present/absent</td>
-</tr>
-<tr>
-<td>Mike Tyson</td>
-<td>s9</td>
-<td>present/absent</td>
-</tr>
-<tr>
-<td>Mike Tyson</td>
-<td>s9</td>
-<td>present/absent</td>
-</tr>
-<tr>
-<td>Mike Tyson</td>
-<td>s9</td>
-<td>present/absent</td>
-</tr>
-<tr>
-<td>Mike Tyson</td>
-<td>s9</td>
-<td>present/absent</td>
-</tr>
+
 </tbody>
 </table>
 </div>
@@ -98,42 +59,111 @@ echo '
 "https://code.jquery.com/jquery-3.3.1.min.js">
   </script>
 ';
-include "dbconn.php";
-if($_SERVER['REQUEST_METHOD']=='POST'){
-    $course = $_POST['course'];
-    $sem = $_POST['sem'];
+if($_POST['btn1']){
+    include "dbconn.php";
+    if($_SERVER['REQUEST_METHOD']=='POST'){
+      $course = $_POST['course'];
+      $sem = $_POST['sem'];
+      session_start();
+      $_SESSION['course'] = $course;
+      $_SESSION['sem'] = $sem;
     
-    if($sem==1 or $sem==2){
+      if($sem==1 or $sem==2){
         $sql = "SELECT * FROM `sem{$sem}_subjects`";
-    }
-    else{
+       }
+       else{
         $sql = "SELECT * FROM `subjects`  WHERE `department`='$course'";
+       }
+       $result = mysqli_query($conn, $sql);    
+       if(mysqli_num_rows($result)>0){
+         $row = mysqli_fetch_assoc($result);
+         $subjects = array($row['subject1'],$row['subject2'],$row['subject3'],$row['subject4'],$row['subject5']);
+         $_SESSION['subjects'] = $subjects;
+         echo '
+         <script>
+         var subjects = ["'.$subjects[0].'","'.$subjects[1].'","'.$subjects[2].'","'.$subjects[3].'","'.$subjects[4].'"];
+         subjects.forEach((val)=>{
+             optionText = val;
+             optionValue = val;
+             $("#subject").append(`<option value="${optionValue}">
+             ${optionText}
+             </option>`);
+          });
+         document.getElementById("attendanceform2").style.visibility = "visible";
+         </script>
+         ';
+        }
     }
-    $result = mysqli_query($conn, $sql);    
-    if(mysqli_num_rows($result)>0){
-        $row = mysqli_fetch_assoc($result);
-        $subjects = array($row['subject1'],$row['subject2'],$row['subject3'],$row['subject4'],$row['subject5']);
-        echo '
-        <script>
-        var subjects = ["'.$subjects[0].'","'.$subjects[1].'","'.$subjects[2].'","'.$subjects[3].'","'.$subjects[4].'"];
-        subjects.forEach((val)=>{
-            optionText = val;
-            optionValue = val;
-            $("#subject").append(`<option value="${optionValue}">
-            ${optionText}
-            </option>`);
-        });
-        document.getElementById("attendanceform2").style.visibility = "visible";
-        </script>
-        ';
-    }
+    mysqli_close($conn);
 }
-mysqli_close($conn);
+if($_POST['btn2']){
+    include "dbconn.php";
+    if($_SERVER['REQUEST_METHOD']=='POST'){
+      session_start();
+      $course = $_SESSION['course'];
+      $sem = $_SESSION['sem'];
+      $subject = $_POST['subject'];
+      $date = $_POST['date'];
+
+      $name_id = array();
+      $sql = "SELECT * FROM `student` WHERE `course`='$course' and `sem`='$sem'";
+      $result = mysqli_query($conn, $sql);
+      $num = mysqli_num_rows($result); 
+      if($num>0){
+      while($row=mysqli_fetch_assoc($result)){
+          $name_id[$row['name']]=$row['id'];
+         }
+      } 
+
+      $all_absent = true;
+      $sql = "SELECT * FROM `attendance` WHERE `subject`='$subject' and `date`='$date'";
+      $result = mysqli_query($conn, $sql);
+      $num = mysqli_num_rows($result); 
+      if($num>0){
+      while($row=mysqli_fetch_assoc($result)){
+         $all_absent = false;
+         }
+      } 
+
+      if($all_absent){
+          foreach($name_id as $name=>$id){
+            echo '
+            <script>
+            $("#myTable tr:last").after("<tr><td>'.$name.'</td><td>'.$id.'</td><td>absent</td></tr>");
+            </script>
+            ';
+          }  
+          echo '
+          <script>
+          var height = (window.scrollY + document.querySelector("#table").getBoundingClientRect().bottom);
+          document.getElementById("attendancecontainer").style.height = height+"px";
+          document.getElementById("myTable").style.visibility = "visible";
+          document.getElementById("table").style.visibility = "visible";
+          document.getElementById("tablehead").style.visibility = "visible";
+          </script>
+          ';
+          $subjects = $_SESSION['subjects'];
+          echo '
+          <script>
+          var subjects = ["'.$subjects[0].'","'.$subjects[1].'","'.$subjects[2].'","'.$subjects[3].'","'.$subjects[4].'"];
+          subjects.forEach((val)=>{
+              optionText = val;
+              optionValue = val;
+              $("#subject").append(`<option value="${optionValue}">
+              ${optionText}
+              </option>`);
+           });
+          document.getElementById("attendanceform2").style.visibility = "visible";
+          </script>
+          ';
+
+      }
+    
+    }
+    mysqli_close($conn);
+}
 echo '
 <script>
-var height = (window.scrollY + document.querySelector("#table").getBoundingClientRect().bottom);
-console.log(height);
-document.getElementById("attendancecontainer").style.height = height+"px";
 document.getElementById("homeli").style.color="white";
 document.getElementById("asli").style.color="white";
 document.getElementById("att").style.color="blue";
@@ -144,3 +174,43 @@ document.getElementById("about").style.color="white";
 </html>
 ';
 ?>
+<!-- <tr>
+<td>Mike Tyson</td>
+<td>s9</td>
+<td>present/absent</td>
+</tr>
+<tr>
+<td>Mike Tyson</td>
+<td>s9</td>
+<td>present/absent</td>
+</tr>
+<tr>
+<td>Mike Tyson</td>
+<td>s9</td>
+<td>present/absent</td>
+</tr>
+<tr>
+<td>Mike Tyson</td>
+<td>s9</td>
+<td>present/absent</td>
+</tr>
+<tr>
+<td>Mike Tyson</td>
+<td>s9</td>
+<td>present/absent</td>
+</tr>
+<tr>
+<td>Mike Tyson</td>
+<td>s9</td>
+<td>present/absent</td>
+</tr>
+<tr>
+<td>Mike Tyson</td>
+<td>s9</td>
+<td>present/absent</td>
+</tr>
+<tr>
+<td>Mike Tyson</td>
+<td>s9</td>
+<td>present/absent</td>
+</tr> -->
