@@ -31,10 +31,6 @@ echo '
     <input type="submit" class="attendanceb" value="Next" name="btn2">
     </form>
 </div>
-
-
-
-
 <div id="table">
 <table id="myTable">
 <thead id="tablehead">
@@ -45,22 +41,18 @@ echo '
 </tr>
 </thead>
 <tbody>
-
 </tbody>
 </table>
+<button id="abutt" onclick="makechanges()">Make Changes</button>
 </div>
-
-
-
-
-
 </div>
+<script src="main.js"></script>
 <script src=
 "https://code.jquery.com/jquery-3.3.1.min.js">
   </script>
 ';
 if($_POST['btn1']){
-    include "dbconn.php";
+    require "dbconn.php";
     if($_SERVER['REQUEST_METHOD']=='POST'){
       $course = $_POST['course'];
       $sem = $_POST['sem'];
@@ -97,13 +89,15 @@ if($_POST['btn1']){
     mysqli_close($conn);
 }
 if($_POST['btn2']){
-    include "dbconn.php";
+    require "dbconn.php";
     if($_SERVER['REQUEST_METHOD']=='POST'){
       session_start();
       $course = $_SESSION['course'];
       $sem = $_SESSION['sem'];
       $subject = $_POST['subject'];
       $date = $_POST['date'];
+      $_SESSION['date'] = $date;
+      $_SESSION['subject'] = $subject;
 
       $name_id = array();
       $sql = "SELECT * FROM `student` WHERE `course`='$course' and `sem`='$sem'";
@@ -116,12 +110,14 @@ if($_POST['btn2']){
       } 
 
       $all_absent = true;
+      $presentids = array();
       $sql = "SELECT * FROM `attendance` WHERE `subject`='$subject' and `date`='$date'";
       $result = mysqli_query($conn, $sql);
       $num = mysqli_num_rows($result); 
       if($num>0){
       while($row=mysqli_fetch_assoc($result)){
          $all_absent = false;
+         array_push($presentids, $row['id']);
          }
       } 
 
@@ -135,6 +131,19 @@ if($_POST['btn2']){
           }  
           echo '
           <script>
+          $("td:nth-child(3)").addClass("absent");
+          $("td:nth-child(3)").click(function(){
+            if($(this).hasClass("absent")){
+              $(this).removeClass("absent");
+               $(this).addClass("present");
+               $(this).html("present");
+            }
+            else{
+              $(this).removeClass("present");
+              $(this).addClass("absent");
+              $(this).html("absent");
+            }
+          });
           var height = (window.scrollY + document.querySelector("#table").getBoundingClientRect().bottom);
           document.getElementById("attendancecontainer").style.height = height+"px";
           document.getElementById("myTable").style.visibility = "visible";
@@ -154,14 +163,79 @@ if($_POST['btn2']){
               </option>`);
            });
           document.getElementById("attendanceform2").style.visibility = "visible";
+          document.getElementById("subject").value="'.$_SESSION['subject'].'";
           </script>
           ';
+
+      }
+      else{
+        foreach($name_id as $name=>$id){
+          echo '
+          <script>
+          $("#myTable tr:last").after("<tr><td>'.$name.'</td><td>'.$id.'</td><td>absent</td></tr>");
+          </script>
+          ';
+        }  
+        echo '
+        <script>
+        $("td:nth-child(3)").addClass("absent");
+        $("td:nth-child(3)").click(function(){
+          if($(this).hasClass("absent")){
+            $(this).removeClass("absent");
+             $(this).addClass("present");
+             $(this).html("present");
+          }
+          else{
+            $(this).removeClass("present");
+            $(this).addClass("absent");
+            $(this).html("absent");
+          }
+        });
+        var height = (window.scrollY + document.querySelector("#table").getBoundingClientRect().bottom);
+        document.getElementById("attendancecontainer").style.height = height+"px";
+        document.getElementById("myTable").style.visibility = "visible";
+        document.getElementById("table").style.visibility = "visible";
+        document.getElementById("tablehead").style.visibility = "visible";
+        </script>
+        ';
+        //Change for this case
+        for($x=0; $x<sizeof($presentids); $x++){
+        echo '
+        <script>
+        $("tr").each(function(){
+          if($(":nth-child(2)", this).text()=="'.$presentids[$x].'"){
+             $(":nth-child(3)", this).removeClass("absent");
+             $(":nth-child(3)", this).addClass("present");
+             $(":nth-child(3)", this).html("present");
+          }
+        });
+        </script>
+        ';
+      }
+
+        $subjects = $_SESSION['subjects'];
+        echo '
+        <script>
+        var subjects = ["'.$subjects[0].'","'.$subjects[1].'","'.$subjects[2].'","'.$subjects[3].'","'.$subjects[4].'"];
+        subjects.forEach((val)=>{
+            optionText = val;
+            optionValue = val;
+            $("#subject").append(`<option value="${optionValue}">
+            ${optionText}
+            </option>`);
+         });
+        document.getElementById("attendanceform2").style.visibility = "visible";
+        document.getElementById("subject").value="'.$_SESSION['subject'].'";
+        </script>
+        ';
 
       }
     
     }
     mysqli_close($conn);
 }
+
+
 echo '
 <script>
 document.getElementById("homeli").style.color="white";
@@ -169,6 +243,9 @@ document.getElementById("asli").style.color="white";
 document.getElementById("att").style.color="blue";
 document.getElementById("edt").style.color="white";
 document.getElementById("about").style.color="white";
+
+
+
 </script>
 </body> 
 </html>
@@ -214,3 +291,6 @@ document.getElementById("about").style.color="white";
 <td>s9</td>
 <td>present/absent</td>
 </tr> -->
+<!-- <form action="attendance.php">
+<input type="submit" id="abutt" value="Make Changes" name="btn3">
+</form> -->

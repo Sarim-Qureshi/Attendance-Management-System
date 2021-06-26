@@ -175,11 +175,9 @@
 }
 #addstudent, .attendanceb{
     background-color: #fda50f;
-    /* background-color: #E3242B; */
 }
 #addstudent:hover, .attendanceb:hover{
     background-color: #FD6A02;
-    /* background-color: #990f02; */
 }
 #error{
     color:red;
@@ -193,7 +191,6 @@
     left:15%;
     width:70vw;
     height:8vh;
-    /* background:pink; */
     display:flex;
     justify-content: center;
     color:white;
@@ -235,32 +232,32 @@
     width: 43vw;
     border :5px solid black;
     border-radius: 10px;
-    background-color:#333;
+    background-color:#222;
 }
 thead{
     color:white;
-    font-size:1.2em;
+    font-size:1.23em;
     margin:10px;
     font-weight: bold;
     font-family: 'Baloo Tammudu 2', cursive;
 }
 th:hover{
-    transform: scale(0.95);
+    transform: scale(0.98);
+    background-color: #051094;
 }
 th{
     border: 5px solid black;
-    background-color: red;
+    background-color: blue;
     padding: 5px 70px 0px 70px;
-    border-radius: 200px;
+    /* border-radius: 200px; */
 }
 td{
     border: 2px solid #888;
-    font-size:1.2em;
+    font-size:1em;
     margin:10px;
     font-weight: bold;
     font-family: 'Baloo Tammudu 2', cursive;
     text-align:center;
-    /* border-radius: 600px; */
     color:white;
 }
 td:hover{
@@ -268,4 +265,35 @@ td:hover{
 }
 #mytable, #table, #tablehead{
     visibility: hidden;
+}
+.absent{
+    background-color: #E3242B;
+}
+.absent:hover{
+    background-color: #990f02;
+}
+.present{
+    background-color:#028a0f;
+}
+.present:hover{
+    background-color:#006400;
+}
+td:nth-child(3){
+    border-radius: 600px;
+    border: 2px solid black;
+}
+td:nth-child(3):hover{
+   transform: scale(0.99);
+}
+#abutt{
+    width:100%;
+    height:6vh;
+    cursor:pointer;
+    font-family: 'Baloo Tammudu 2', cursive;
+    background-color: #fda50f;
+    color:white;
+    font-size:1.1em;
+}
+#abutt:hover{
+    background-color: #FD6A02;
 }
