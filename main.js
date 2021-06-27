@@ -37,3 +37,8 @@ function makechanges(){
     console.log(absid);
     location.href = 'attendance2.php';
   }
+
+  function editstudent(){
+    document.getElementById("editstudentcont").style.display = "flex";
+    document.getElementById("editstudentcont").style.justifyContent = "center";
+  }

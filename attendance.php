@@ -31,6 +31,7 @@ echo '
     <input type="submit" class="attendanceb" value="Next" name="btn2">
     </form>
 </div>
+<div id="textns"></div>
 <div id="table">
 <table id="myTable">
 <thead id="tablehead">
@@ -144,11 +145,23 @@ if($_POST['btn2']){
               $(this).html("absent");
             }
           });
+          if(document.getElementById("myTable").rows.length>=7){
           var height = (window.scrollY + document.querySelector("#table").getBoundingClientRect().bottom);
           document.getElementById("attendancecontainer").style.height = height+"px";
+          }
+          if(document.getElementById("myTable").rows.length!=1){
           document.getElementById("myTable").style.visibility = "visible";
           document.getElementById("table").style.visibility = "visible";
           document.getElementById("tablehead").style.visibility = "visible";
+          }
+          else{
+          textns = document.getElementById("textns");
+          textns.innerText="There are no students in semester '.$sem.' and department '.$course.'";
+          textns.style.display = "block";
+          setTimeout(() => {
+            textns.style.display="none";
+          }, 5000);
+          }
           </script>
           ';
           $subjects = $_SESSION['subjects'];
@@ -191,11 +204,23 @@ if($_POST['btn2']){
             $(this).html("absent");
           }
         });
+        if(document.getElementById("myTable").rows.length>=7){
         var height = (window.scrollY + document.querySelector("#table").getBoundingClientRect().bottom);
         document.getElementById("attendancecontainer").style.height = height+"px";
+        }
+        if(document.getElementById("myTable").rows.length!=1){
         document.getElementById("myTable").style.visibility = "visible";
         document.getElementById("table").style.visibility = "visible";
         document.getElementById("tablehead").style.visibility = "visible";
+        }
+        else{
+          textns = document.getElementById("textns");
+          textns.innerText="There are no students in semester '.$sem.' and department '.$course.'";
+          textns.style.display = "block";
+          setTimeout(() => {
+            textns.style.display="none";
+          }, 5000);
+        }
         </script>
         ';
         //Change for this case
@@ -251,6 +276,7 @@ document.getElementById("about").style.color="white";
 </html>
 ';
 ?>
+
 <!-- <tr>
 <td>Mike Tyson</td>
 <td>s9</td>
