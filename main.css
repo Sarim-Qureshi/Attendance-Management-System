@@ -361,11 +361,61 @@ td:nth-child(3):hover{
     color:white;
     cursor:pointer;
 }
-#editstudentcont{
+#editstudentcont1{
     position:absolute;
     top:70px;
     width:100vw;
     height:10vh;
-    /* background-color: pink; */
+    display:none;
+}
+#editstudentcont2{
+    position:absolute;
+    top:220px;
+    width:98vw;
+    height:14vh;
+    display:none;
+}
+#studdet{
+    position:absolute;
+    top:160px;
+    font-family: 'Baloo Tammudu 2', cursive;
+    font-size:1.3em;
+    display:none;
+}
+#deledtbts{
+    position: absolute;
+    top:340px;
+    width:100vw;
+    height:10vh;
+    display:none;
+}
+#remstud{
+    font-family: 'Baloo Tammudu 2', cursive;
+    font-size:1.3em;
+    background-color: #E3242B;
+    color:white;
+    cursor:pointer;
+}
+#remstud:hover{
+    background-color: #990f02;
+}
+#editstud{
+    font-family: 'Baloo Tammudu 2', cursive;
+    font-size:1.3em;
+    background-color: blue;   
+    color:white;
+    cursor:pointer;
+}
+#editstud:hover{
+    background-color: #051094;
+}
+#editstudenttext{
+    position: absolute;
+    top:450px;
+    width:100vw;
+    height:15vh;
+    font-family: 'Baloo Tammudu 2', cursive;
+    font-size:1.2em;
+    text-align: center;
     display:none;
 }

@@ -39,6 +39,6 @@ function makechanges(){
   }
 
   function editstudent(){
-    document.getElementById("editstudentcont").style.display = "flex";
-    document.getElementById("editstudentcont").style.justifyContent = "center";
+    document.getElementById("editstudentcont1").style.display = "flex";
+    document.getElementById("editstudentcont1").style.justifyContent = "center";
   }
