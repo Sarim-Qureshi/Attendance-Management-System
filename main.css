@@ -152,7 +152,7 @@
      font-size:1.3em;
      color:white;
     }
-#addstudentcontainer, #attendancecontainer{
+#addstudentcontainer, #attendancecontainer, #coursecontainer{
     position: absolute;
     left:0%;
     top:11.5%;
@@ -187,7 +187,7 @@
     font-family: 'Baloo Tammudu 2', cursive;
     text-align: center;
 }
-#attendanceform1{
+#attendanceform1, #courseform1{
     position:relative;
     top:0px;
     left:15%;
@@ -406,8 +406,16 @@ td:nth-child(3):hover{
     color:white;
     cursor:pointer;
 }
-#editstud:hover{
+#editstud:hover, #courseb2:hover{
     background-color: #051094;
+}
+#courseb2{
+    font-family: 'Baloo Tammudu 2', cursive;
+    font-size:1.1em;
+    background-color: blue;   
+    color:white;
+    cursor:pointer;
+    margin:10px 5px;
 }
 #editstudenttext{
     position: absolute;
@@ -416,6 +424,33 @@ td:nth-child(3):hover{
     height:15vh;
     font-family: 'Baloo Tammudu 2', cursive;
     font-size:1.2em;
+    text-align: center;
+    display:none;
+}
+#courseform2{
+    position:absolute;
+    left:35%;
+    top:10%;
+    width:30vw;
+    height:63vh;
+    background-color:#bbb;
+    text-align: center;
+    font-family: 'Baloo Tammudu 2', cursive;
+    border: 3px solid goldenrod;
+    border-radius: 10px;
+    display:none;
+}
+#courseform2 label,input{
+    margin:2px 10px;
+    font-size:1.2em;
+}
+#editsubjecttext{
+    position: absolute;
+    top:440px;
+    width:100vw;
+    height:5vh;
+    font-family: 'Baloo Tammudu 2', cursive;
+    font-size:1.3em;
     text-align: center;
     display:none;
 }

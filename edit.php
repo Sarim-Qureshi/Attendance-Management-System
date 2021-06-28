@@ -12,7 +12,7 @@ echo '
 <button id="eb1" onclick="editstudent()">Edit Student Details</button>
 </span>
 <span>
-<button id="eb2" onclick="">Edit course Details</button>
+<button id="eb2">Edit course Details</button>
 </span>
 <div id="editstudentcont1">
 <form action="edit.php" method="POST">
@@ -200,6 +200,9 @@ if($_POST['esb3']){
 
 echo '
 <script>
+document.getElementById("eb2").onclick = function(){
+    location.href = "edit2.php";
+}
 document.getElementById("homeli").style.color="white";
 document.getElementById("asli").style.color="white";
 document.getElementById("att").style.color="white";
