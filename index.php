@@ -52,7 +52,7 @@ mysqli_close($conn);
     
 <div id="heading">Attendance Management System</div> 
         <div id="box-login">
-            <div id="title">Login Panel</div>
+            <div class="title">Login Panel</div>
             <form action="index.php" method="POST">
                <input type="text" maxlength="20" placeholder="username" name="username" class="formelem" required>
                <input type="password" maxlength="20" placeholder="password" name="password" class="formelem" required>

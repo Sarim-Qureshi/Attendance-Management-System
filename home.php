@@ -5,7 +5,9 @@ if(!isset($_SESSION['username'])){
 }
 require "navbar.php";
 echo '
-<div id="homecontainer"><div id="homecontainertitle">Attendance Management System</div>
+<div id="homecontainer">
+<div id="cp"><a href="changepassword.php">Change Password</a></div>
+<div id="homecontainertitle">Attendance Management System</div>
 <div id="homecontainerbody">Manage student\'s attendance in a smart and easy way</div>
 </div>
 <script>

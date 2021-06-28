@@ -75,7 +75,7 @@ mysqli_close($conn);
 
         <div id="heading">Attendance Management System</div> 
         <div id="box-register">
-            <div id="title">Register</div>
+            <div class="title">Register</div>
             <form action="register.php" method="POST">
                 <input type="email" maxlength="20" placeholder="email id" name="email" class="formelem" required>
                 <input type="text" maxlength="20" placeholder="faculty id" name="fid" class="formelem" required>

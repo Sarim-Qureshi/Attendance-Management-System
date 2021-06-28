@@ -16,7 +16,7 @@ echo '
             <li><a href="addstudent.php" id="asli">Add Student</a></li>
             <li><a href="attendance.php" id="att">Mark Attendance</a></li>
             <li><a href="edit.php" id="edt">Edit Details</a></li>
-            <li><a href="about.php" id="about">About</a></li>
+            <li><a href="about.html" id="about">About</a></li>
             <li><a href="logout.php" id="logoutli">Logout</a></li>
         </ul>
     </div>

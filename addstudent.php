@@ -26,7 +26,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 mysqli_close($conn);
 echo '
 <div id="addstudentcontainer"><div id="addstudentformcontainer">
-<div id="title">Add Student</div>
+<div class="title">Add Student</div>
 <form action="addstudent.php" method="POST">
 <input type="text" maxlength="50" placeholder="student name" name="student_name" class="formelem" required>
 <input type="text" maxlength="20" placeholder="student id" name="student_id" class="formelem" required>
